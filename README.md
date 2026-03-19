@@ -6,10 +6,11 @@
 ## 项目特点
 
 - 使用原生 `WebView` 加载 Qwen Chat 网页
-- 默认使用手机版 `User-Agent`，优先按手机页面展示
+- 优先使用设备真实 `WebView User-Agent`，提升页面兼容性
 - 保留登录态，支持 Cookie 持久化
+- 启动时批量申请麦克风、相机等运行时权限，供网页后续直接使用
 - 支持文件选择、下载、基础多窗口跳转
-- 增加静态资源磁盘缓存，用于缓存 CSS、JS、图片、字体等文件，提升下次打开速度
+- 支持网页直接调用拍照、录像、录音等系统能力
 - 使用本地脚本直接构建 APK，不依赖 Gradle 在线下载依赖
 
 ## 目录结构
@@ -28,8 +29,8 @@ qwen-chat-app/
 │       └── ic_launcher_round.png
 └── src/
     └── com/codex/qwenchat/
+        ├── CaptureFileProvider.java
         ├── MainActivity.java
-        └── StaticAssetCache.java
 ```
 
 ## 环境要求
@@ -50,26 +51,14 @@ qwen-chat-app/
 应用主入口位于 `MainActivity.java`，主要负责：
 
 - 创建 `WebView`
-- 设置手机版 `User-Agent`
+- 设置兼容性更好的 `User-Agent`
 - 开启 JavaScript、DOM Storage、Cookie、第三方 Cookie
-- 处理返回键、文件上传、下载、弹窗跳转
+- 处理运行时权限、返回键、文件上传、下载、弹窗跳转
 
 ### 2. 登录状态保留
 
 登录状态依赖 `WebView` 的 Cookie 持久化。  
 首次登录后，只要用户不清除应用数据，通常再次打开应用仍可保持登录状态。
-
-### 3. 静态资源缓存
-
-`StaticAssetCache.java` 会拦截部分静态资源请求，并缓存以下类型资源：
-
-- CSS
-- JS
-- 图片
-- 字体
-- 一部分静态 JSON / map 文件
-
-缓存仅针对静态资源，不缓存聊天接口、登录接口等动态请求，避免影响会话和实时内容。
 
 ## 如何构建 APK
 
