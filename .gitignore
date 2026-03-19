@@ -1,0 +1,16 @@
+# Build outputs
+build/
+dist/
+
+# Signing
+debug.keystore
+*.idsig
+
+# IDE / OS
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
