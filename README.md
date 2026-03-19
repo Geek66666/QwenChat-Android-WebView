@@ -1,7 +1,7 @@
 # Qwen Chat Android 壳应用
 
 这是一个将 `https://chat.qwen.ai/` 封装为安卓应用的轻量项目，应用名称为 `Qwen Chat`。  
-项目基于原生 Android `WebView` 实现，不依赖第三方 Android UI 框架，便于后续自行修改、二次打包和上传到 GitHub。
+项目基于原生 Android `WebView` 实现，不依赖第三方 Android UI 框架
 
 ## 项目特点
 
@@ -76,34 +76,7 @@ dist/QwenChat.apk
 
 首次构建时，如果项目目录下不存在 `debug.keystore`，脚本会自动生成一个调试签名证书用于打包。
 
-## GitHub 上传建议
 
-建议将以下内容提交到 GitHub：
-
-- 源代码
-- `README.md`
-- `build.sh`
-- 图标源文件
-
-不建议提交以下内容：
-
-- `build/`
-- `dist/`
-- `debug.keystore`
-- `*.idsig`
-
-这些内容已经写入 `.gitignore`。
-
-## 推荐上传步骤
-
-```bash
-git init
-git add .
-git commit -m "Initial commit: Qwen Chat Android wrapper"
-git branch -M main
-git remote add origin <你的仓库地址>
-git push -u origin main
-```
 
 ## 注意事项
 
